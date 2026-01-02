@@ -20,5 +20,5 @@ jobs:
     
     - name: Build and Push
       run: |
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }/}mvcshoppingapp:1.0.0 .
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mvcshoppingapp:1.0.0 .
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/mvcshoppingapp:1.0.0
