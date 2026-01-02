@@ -45,11 +45,12 @@ jobs:
         docker pull ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
     
     - name: Deploy
+      shell: cmd
       run: |
-        docker stop ${{ env.IMAGE_NAME }} || true
-        docker rm ${{ env.IMAGE_NAME }} || true
-        docker run -d \
-          --name ${{ env.IMAGE_NAME }} \
-          -p 8080:8080 \
-          -v $(pwd)/data:/app/data \
-          ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+        docker stop mvc-shopping-app || echo "No container to stop"
+        docker rm mvc-shopping-app || echo "No container to remove"
+        docker run -d ^
+          --name mvc-shopping-app ^
+          -p 8080:8080 ^
+          -v %CD%/data:/app/data ^
+          %DOCKERHUB_USERNAME%/mvc-shopping-app:latest
