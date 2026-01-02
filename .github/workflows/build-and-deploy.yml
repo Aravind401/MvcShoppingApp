@@ -36,7 +36,7 @@ jobs:
 
   deploy-local:
     needs: build-and-push
-    runs-on: [self-hosted, local]
+    runs-on: [self-hosted, Windows]
     
     steps:
     - name: Pull from Docker Hub
