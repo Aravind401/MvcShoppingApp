@@ -1,0 +1,44 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Welcome to Our Shopping Store</h1>
+
+<div class="row mt-4">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">@product.Description</p>
+                    <p class="card-text"><strong>Price: $@product.Price.ToString("0.00")</strong></p>
+                    <p class="card-text">
+                        <small class="text-muted">Category: @product.Category</small>
+                    </p>
+
+                    <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                        <input type="hidden" name="productId" value="@product.Id" />
+                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning">
+        No products found. Please check database connection.
+    </div>
+}
+
+<div class="mt-4">
+    <h3>Navigation:</h3>
+    <a href="/Account/Login" class="btn btn-success">Login</a>
+    <a href="/Account/Register" class="btn btn-info">Register</a>
+    <a href="/Cart" class="btn btn-warning">View Cart</a>
+</div>
