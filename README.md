@@ -1,2 +1,2 @@
 # MvcShoppingApp
-LB - L&amp;D
+LB - L and D
